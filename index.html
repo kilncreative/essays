@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E.E. Raum | Essays</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300&family=Space+Mono:wght@400&display=swap');
+        
+        :root {
+            --off-black: #111111;
+            --off-white: #f2f2ef;
+            --light-gray: #e0e0dc;
+            --mid-gray: #9c9c9c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--off-white);
+            color: var(--off-black);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .page-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100vh;
+        }
+        
+        .left-panel {
+            padding: 6vh 4vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid var(--light-gray);
+            height: 100vh;
+        }
+        
+        .nav-section {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10vh;
+        }
+        
+        .site-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: 0.03em;
+            margin-bottom: 3vh;
+        }
+        
+        .nav-links {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            text-transform: lowercase;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vh;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--mid-gray);
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--off-black);
+        }
+        
+        .info-section {
+            margin-top: auto;
+            max-width: 80%;
+        }
+        
+        .tagline {
+            font-style: italic;
+            margin-bottom: 1vh;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .meta-info {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--mid-gray);
+        }
+        
+        .right-panel {
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://raw.githubusercontent.com/kilncreative/PromptCard/refs/heads/main/public/EricWadiRum.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%) contrast(90%);
+            transition: transform 8s ease;
+            transform-origin: center;
+        }
+        
+        .right-panel:hover {
+            transform: scale(1.05);
+        }
+        
+        .grain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9Ii4wNSIvPjwvc3ZnPg==');
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        
+        .issue-number {
+            position: absolute;
+            bottom: 6vh;
+            left: 4vw;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--off-white);
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 0.5vh 0.8vw;
+            z-index: 10;
+        }
+        
+        .essay-title {
+            position: absolute;
+            bottom: 10vh;
+            left: 4vw;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 2.4rem;
+            color: var(--off-white);
+            max-width: 80%;
+            line-height: 1.2;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <section class="left-panel">
+            <div class="nav-section">
+                <h1 class="site-title">ERIC RAUM</h1>
+                <nav class="nav-links">
+                    <a href="#" class="current">The Unbearable Lightness of Built Space</a>
+                    <a href="#">Temporal Fragments</a>
+                    <a href="#">Memory As Architecture</a>
+                    <a href="#">Shadow and Substance</a>
+                    <a href="#">about</a>
+                </nav>
+            </div>
+            
+            <div class="info-section">
+                <p class="tagline">Observations on architecture, temporality, and the aesthetic dimensions of memory.</p>
+                <p class="meta-info">Volume III, 2025</p>
+            </div>
+        </section>
+        
+        <section class="right-panel">
+            <div class="grain-overlay"></div>
+            <div class="issue-number">ESSAY 07</div>
+            <h2 class="essay-title">The Unbearable Lightness of Built Space</h2>
+        </section>
+    </div>
+</body>
+</html>
