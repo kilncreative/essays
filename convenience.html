@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convenience is All You Need | Eric Raum</title>
+    <title>The Unbearable Lightness of Built Space | Eric Raum</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300&family=Space+Mono:wght@400&display=swap');
         
@@ -220,19 +220,24 @@
             margin-bottom: 1.5rem;
         }
         
-        .footer-nav {
-            margin-top: 3rem;
-            border-top: 1px solid var(--light-gray);
-            padding-top: 1.5rem;
+        .end-mark {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            margin: 5rem 0 3rem;
         }
         
-        .footer-nav a {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.65rem;
-            text-decoration: none;
-            color: var(--mid-gray);
+        .dot {
+            width: 4px;
+            height: 4px;
+            background-color: var(--mid-gray);
+            border-radius: 50%;
+        }
+        
+        @media (min-width: 768px) {
+            .dot {
+                width: 5px;
+                height: 5px;
+            }
         }
         
         @media (min-width: 768px) {
@@ -370,7 +375,7 @@
                 transition: color 0.3s ease;
             }
             
-            .footer-nav {
+            .end-mark {
                 display: none;
             }
             
@@ -422,7 +427,7 @@
         <!-- Content (Mobile & Desktop) -->
         <main class="content">
             <div class="meta">
-                <div class="essay-number">DRAFT 01</div>
+                <div class="essay-number">ESSAY 07</div>
                 <h2 class="essay-title">Convenience is All You Need</h2>
                 <div class="essay-date">APRIL 19, 2025</div>
             </div>
@@ -464,11 +469,10 @@
                 </div>
             </div>
             
-            <!-- Mobile Footer Nav -->
-            <nav class="footer-nav">
-                <a href="#">← previous</a>
-                <a href="#">next →</a>
-            </nav>
+            <!-- Simple End Mark -->
+            <div class="end-mark">
+                <span class="dot"></span>
+            </div>
         </main>
         
         <!-- Desktop Right Margin -->
