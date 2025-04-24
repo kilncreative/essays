@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convenience is All You Need | Eric Raum</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300&family=Space+Mono:wght@400&display=swap');
+        
+        :root {
+            --off-black: #111111;
+            --off-white: #f2f2ef;
+            --light-gray: #e0e0dc;
+            --mid-gray: #9c9c9c;
+            --dark-gray: #555555;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--off-white);
+            color: var(--off-black);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+        }
+        
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9Ii4wNSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--off-white);
+            z-index: 100;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .site-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 0.03em;
+        }
+        
+        .site-title a {
+            text-decoration: none;
+            color: var(--off-black);
+        }
+        
+        .menu-button {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--mid-gray);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            text-transform: lowercase;
+        }
+        
+        .navigation {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--off-white);
+            z-index: 200;
+            padding: 2rem;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .navigation.active {
+            right: 0;
+        }
+        
+        .close-nav {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--mid-gray);
+            cursor: pointer;
+            margin-bottom: 2rem;
+        }
+        
+        .nav-links {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--off-black);
+            transition: color 0.3s ease;
+        }
+        
+        .essay-nav {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--light-gray);
+            margin-top: 3rem;
+        }
+        
+        .essay-nav a {
+            text-decoration: none;
+            color: var(--mid-gray);
+            transition: color 0.3s ease;
+        }
+        
+        .content {
+            padding: 5rem 1.5rem 3rem;
+        }
+        
+        .meta {
+            margin-bottom: 2rem;
+        }
+        
+        .essay-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .essay-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 2.2rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        
+        .essay-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--mid-gray);
+        }
+        
+        .essay-content {
+            font-size: 1.375rem;
+            line-height: 1.7;
+        }
+        
+        .essay-content p {
+            margin-bottom: 1.8rem;
+        }
+        
+        .essay-content p:first-of-type {
+            font-size: 1.55rem;
+            line-height: 1.6;
+        }
+        
+        .divider {
+            width: 3em;
+            height: 1px;
+            background-color: var(--mid-gray);
+            margin: 3rem auto;
+        }
+        
+        .essay-image {
+            margin: 2.5rem 0;
+            max-width: 100%;
+        }
+        
+        .essay-image figcaption {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--mid-gray);
+            margin-top: 0.5rem;
+        }
+        
+        .essay-img {
+            width: 100%;
+            height: auto;
+            filter: grayscale(100%);
+        }
+        
+        .margin-notes {
+            border-top: 1px solid var(--light-gray);
+            padding-top: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .margin-note {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-nav {
+            margin-top: 3rem;
+            border-top: 1px solid var(--light-gray);
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-nav a {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            text-decoration: none;
+            color: var(--mid-gray);
+        }
+        
+        @media (min-width: 768px) {
+            .site-header {
+                padding: 2rem;
+            }
+            
+            .content {
+                padding: 7rem 2rem 4rem;
+                max-width: 40em;
+                margin: 0 auto;
+            }
+            
+            .meta {
+                margin-bottom: 4rem;
+            }
+            
+            .essay-title {
+                font-size: 3rem;
+            }
+            
+            .navigation {
+                width: 70%;
+                padding: 3rem;
+            }
+            
+            .essay-content {
+                font-size: 1.5rem;
+            }
+            
+            .essay-content p:first-of-type {
+                font-size: 1.7rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .page-container {
+                display: grid;
+                grid-template-columns: 16vw 1fr 16vw;
+                min-height: 100vh;
+                position: relative;
+            }
+            
+            .site-header {
+                display: none;
+            }
+            
+            .left-margin {
+                padding: 10vh 2vw;
+                border-right: 1px solid var(--light-gray);
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            
+            .site-title-desktop {
+                font-family: 'Cormorant Garamond', serif;
+                font-weight: 500;
+                font-size: 1.1rem;
+                letter-spacing: 0.03em;
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+                margin-bottom: auto;
+            }
+            
+            .site-title-desktop a {
+                text-decoration: none;
+                color: var(--off-black);
+            }
+            
+            .essay-nav-desktop {
+                font-family: 'Space Mono', monospace;
+                font-size: 0.65rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1vh;
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+            }
+            
+            .essay-nav-desktop a {
+                text-decoration: none;
+                color: var(--mid-gray);
+                transition: color 0.3s ease;
+            }
+            
+            .content {
+                padding: 10vh 0;
+                margin: 0 auto;
+                max-width: 40em;
+            }
+            
+            .meta {
+                display: grid;
+                grid-template-columns: 1fr;
+                margin-bottom: 8vh;
+            }
+            
+            .essay-content p {
+                padding-right: 1em;
+            }
+            
+            .right-margin {
+                padding: 10vh 2vw;
+                border-left: 1px solid var(--light-gray);
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            
+            .margin-notes {
+                border-top: none;
+                padding-top: 0;
+                margin: 0;
+            }
+            
+            .nav-links-desktop {
+                font-family: 'Space Mono', monospace;
+                font-size: 0.65rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1vh;
+                margin-top: auto;
+            }
+            
+            .nav-links-desktop a {
+                text-decoration: none;
+                color: var(--mid-gray);
+                transition: color 0.3s ease;
+            }
+            
+            .footer-nav {
+                display: none;
+            }
+            
+            .essay-image-right {
+                float: right;
+                max-width: 45%;
+                margin: 0 0 3vh 4vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    
+    <!-- Mobile Header -->
+    <header class="site-header">
+        <h1 class="site-title"><a href="#">ERIC RAUM</a></h1>
+        <button class="menu-button" id="menu-open">menu</button>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <nav class="navigation" id="navigation">
+        <button class="close-nav" id="menu-close">close</button>
+        <div class="nav-links">
+            <a href="#">Convenience is All You Need</a>
+            <a href="#">Temporal Fragments</a>
+            <a href="#">Memory As Architecture</a>
+            <a href="#">Shadow and Substance</a>
+            <a href="#">about</a>
+        </div>
+        <div class="essay-nav">
+            <a href="#">← previous</a>
+            <a href="#">next →</a>
+        </div>
+    </nav>
+    
+    <!-- Desktop Layout -->
+    <div class="page-container">
+        <!-- Desktop Left Margin -->
+        <aside class="left-margin">
+            <h1 class="site-title-desktop"><a href="#">ERIC RAUM</a></h1>
+            
+            <div class="essay-nav-desktop">
+                <a href="#">← previous</a>
+                <a href="#">next →</a>
+            </div>
+        </aside>
+        
+        <!-- Content (Mobile & Desktop) -->
+        <main class="content">
+            <div class="meta">
+                <div class="essay-number">DRAFT 01</div>
+                <h2 class="essay-title">Convenience is All You Need</h2>
+                <div class="essay-date">APRIL 19, 2025</div>
+            </div>
+            
+            <article class="essay-content">
+                <p>There exists a particular kind of melancholy in buildings constructed to outlast their creators, yet destined to be forgotten. I encountered such a structure last autumn—a brutalist pavilion standing at the edge of a man-made lake, its concrete form reflecting in still water. The architect, whose name has faded from public knowledge, had created a monument to permanence that paradoxically emphasized transience.</p>
+                
+                <figure class="essay-image">
+                    <img src="/api/placeholder/800/500" alt="Brutalist architecture reflected in water" class="essay-img">
+                    <figcaption>Concrete forms dissolving into reflection, November 2024</figcaption>
+                </figure>
+                
+                <p>We are taught to understand architecture as a dialogue between form and function, between historical precedent and innovative vision. Yet there exists another dimension—the conversation between structure and time. The pavilion's sharp angles had softened over decades, its once-definitive edges now bearing the gentle erosion of countless rainstorms. The concrete, once uniform in color, had developed a patina of subtle variations—evidence of its ongoing negotiation with the elements.</p>
+                
+                <p>The Japanese concept of wabi-sabi offers a framework for appreciating such unintended evolution. It celebrates the beauty found in imperfection and accepts the natural cycle of growth and decay. The building I encountered had not simply aged—it had matured, acquiring complexities unimaginable to its creator. Its surfaces held a record of time passing: water stains forming accidental compositions, cracks revealing the tension between human intention and natural forces.</p>
+                
+                <div class="divider"></div>
+                
+                <p>Architecture exists in an unusual temporal state. Unlike other art forms that present themselves in their entirety—a painting viewed at once, a piece of music unfolding in a defined duration—buildings reveal themselves gradually through habitation and changing light. The pavilion appeared fundamentally different at dawn than at dusk, its character transforming with each hour. What seems a static medium becomes, upon extended observation, remarkably fluid.</p>
+                
+                <figure class="essay-image essay-image-right">
+                    <img src="/api/placeholder/400/600" alt="Architectural detail showing weathering patterns" class="essay-img">
+                    <figcaption>Detail of weathering pattern on eastern facade</figcaption>
+                </figure>
+                
+                <p>Perhaps this quality explains our peculiar relationship with abandoned structures. They represent interrupted dialogues—conversations with space and time that have been suspended. The pavilion, no longer serving its original function as a gathering place, had become something else entirely: a framework for observing temporal processes, a lens through which to contemplate impermanence.</p>
+                
+                <p>The modernist tradition from which brutalism emerged promised certainty through rational design. Yet what remains most striking about such buildings decades later is not their rationality but their capacity to accumulate meaning beyond their creators' intentions. The pavilion had become a repository for unplanned significance—a palimpsest where human design and natural processes had collaboratively authored something neither could have created alone.</p>
+            </article>
+            
+            <!-- Mobile Margin Notes -->
+            <div class="margin-notes">
+                <div class="margin-note">
+                    On the particular quality of light in abandoned spaces, and how emptiness amplifies the passage of time.
+                </div>
+                
+                <div class="margin-note">
+                    The philosophical implications of structures that outlive their intended purposes but find new meaning in their obsolescence.
+                </div>
+            </div>
+            
+            <!-- Mobile Footer Nav -->
+            <nav class="footer-nav">
+                <a href="#">← previous</a>
+                <a href="#">next →</a>
+            </nav>
+        </main>
+        
+        <!-- Desktop Right Margin -->
+        <aside class="right-margin">
+            <div class="margin-notes">
+                <div class="margin-note">
+                    On the particular quality of light in abandoned spaces, and how emptiness amplifies the passage of time.
+                </div>
+                
+                <div class="margin-note">
+                    The philosophical implications of structures that outlive their intended purposes but find new meaning in their obsolescence.
+                </div>
+            </div>
+            
+            <nav class="nav-links-desktop">
+                <a href="#">Convenience is All You Need</a>
+                <a href="#">Temporal Fragments</a>
+                <a href="#">Memory As Architecture</a>
+                <a href="#">Shadow and Substance</a>
+                <a href="#">about</a>
+            </nav>
+        </aside>
+    </div>
+    
+    <script>
+        // Mobile menu functionality
+        document.getElementById('menu-open').addEventListener('click', function() {
+            document.getElementById('navigation').classList.add('active');
+        });
+        
+        document.getElementById('menu-close').addEventListener('click', function() {
+            document.getElementById('navigation').classList.remove('active');
+        });
+    </script>
+</body>
+</html>
