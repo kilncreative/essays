@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eric Raum | Thoughts</title>
+    <title>E.E. Raum | Essays</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300&family=Space+Mono:wght@400&display=swap');
         
@@ -147,6 +147,16 @@
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             z-index: 10;
         }
+        
+        .essay-title a {
+            text-decoration: none;
+            color: var(--off-white);
+            transition: opacity 0.3s ease;
+        }
+        
+        .essay-title a:hover {
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -155,7 +165,7 @@
             <div class="nav-section">
                 <h1 class="site-title">ERIC RAUM</h1>
                 <nav class="nav-links">
-                    <a href="#" class="current">Convenience is All You Need</a>
+                    <a href="/convenience.html" class="current">Convenience is All You Need</a>
                     <a href="#">Temporal Fragments</a>
                     <a href="#">Memory As Architecture</a>
                     <a href="#">Shadow and Substance</a>
@@ -172,7 +182,7 @@
         <section class="right-panel">
             <div class="grain-overlay"></div>
             <div class="issue-number">ESSAY 07</div>
-            <h2 class="essay-title">Convenience is All You Need</h2>
+            <h2 class="essay-title"><a href="/convenience.html">Convenience is All You Need</a></h2>
         </section>
     </div>
 </body>
