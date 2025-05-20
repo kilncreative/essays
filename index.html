@@ -173,10 +173,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 0.5rem;
         }
         
-        .essay-title a {
-            text-decoration: none;
-            color: var(--off-white);
-        }
+        /* .essay-title a was removed as content is no longer a link */
         
         .content-section {
             padding: 2rem 1.5rem;
@@ -195,9 +192,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: var(--mid-gray);
         }
 
-        /* This rule hides the desktop container by default */
         .page-container {
-            display: none;
+            display: none; 
         }
         
         /* Tablet Layout */
@@ -238,7 +234,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }
             
             .page-container {
-                display: grid; /* This overrides 'display: none' for desktop */
+                display: grid; 
                 grid-template-columns: 1fr 1fr;
                 height: 100vh;
                 overflow: hidden;
@@ -344,17 +340,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 z-index: 10;
             }
             
-            .desktop-essay-title a {
-                text-decoration: none;
-                color: var(--off-white);
-                transition: opacity 0.3s ease;
-            }
+            /* .desktop-essay-title a and a:hover styles were removed as content is no longer a link */
             
-            .desktop-essay-title a:hover {
-                opacity: 0.9;
-            }
-            
-            .content-section { /* Hides mobile content section on desktop */
+            .content-section {
                 display: none;
             }
         }
@@ -386,8 +374,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="featured-image-container">
         <img src="https://raw.githubusercontent.com/kilncreative/PromptCard/refs/heads/main/public/EricWadiRum.jpg" alt="Desert landscape" class="featured-image">
         <div class="image-overlay">
-            <div class="issue-number">ESSAY 01</div>
-            <h2 class="essay-title"><a href="/convenience.html">Convenience is All You Need</a></h2>
+            <div class="issue-number">Selected Works</div>
+            <h2 class="essay-title">Projects and Essays</h2>
         </div>
     </div>
     
@@ -419,8 +407,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
         <section class="right-panel">
             <div class="desktop-grain-overlay"></div>
-            <div class="desktop-issue-number">ESSAY 01</div>
-            <h2 class="desktop-essay-title"><a href="/convenience.html">Convenience is All You Need</a></h2>
+            <div class="desktop-issue-number">Selected Works</div>
+            <h2 class="desktop-essay-title">Projects and Essays</h2>
         </section>
     </div>
     
