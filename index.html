@@ -194,6 +194,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 0.7rem;
             color: var(--mid-gray);
         }
+
+        /* This rule hides the desktop container by default */
+        .page-container {
+            display: none;
+        }
         
         /* Tablet Layout */
         @media (min-width: 768px) {
@@ -233,7 +238,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }
             
             .page-container {
-                display: grid;
+                display: grid; /* This overrides 'display: none' for desktop */
                 grid-template-columns: 1fr 1fr;
                 height: 100vh;
                 overflow: hidden;
@@ -349,7 +354,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 opacity: 0.9;
             }
             
-            .content-section {
+            .content-section { /* Hides mobile content section on desktop */
                 display: none;
             }
         }
